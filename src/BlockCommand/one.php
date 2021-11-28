@@ -84,7 +84,7 @@ class one extends PluginBase implements Listener
         }
 
         if ($block->getId() === 0) return;
-        if ($level->getName() == $this->getConfig()->get('world')) {
+        if ($level->getName() === $this->getConfig()->get('world')) {
             if ($block->getId() === $this->getConfig()->get('block-id')) {
                 if (empty($this->cooldown[$player->getName()])) {
                     $this->cooldown[$player->getName()] = time() + 20; // 20 is a second of cooldown
