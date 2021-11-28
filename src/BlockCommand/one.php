@@ -27,6 +27,10 @@ class one extends PluginBase implements Listener
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getLogger()->alert("BlockCommand Armed");
         $this->getLogger()->notice("Created by princepines, contributed by many.");
+        @mkdir($this->getDataFolder());
+        $this->saveResource("config.yml");
+        $this->myConfig = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+
     }
 
 
@@ -80,8 +84,8 @@ class one extends PluginBase implements Listener
         }
 
         if ($block->getId() === 0) return;
-        if ($level->getName() == "POTPVP") {
-            if ($block->getId() === 182) {
+        if ($level->getName() == $this->getConfig()->get('world')) {
+            if ($block->getId() === $this->getConfig()->get('block-id')) {
                 if (empty($this->cooldown[$player->getName()])) {
                     $this->cooldown[$player->getName()] = time() + 20; // 20 is a second of cooldown
                     //$this->getServer()->dispatchCommand(new ConsoleCommandSender(), "rca " . $name . " " ."kit kit");
