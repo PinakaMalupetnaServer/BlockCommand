@@ -29,7 +29,6 @@ class one extends PluginBase implements Listener
         $this->getLogger()->notice("Created by princepines, contributed by many.");
         @mkdir($this->getDataFolder());
         $this->saveResource("config.yml");
-        $this->myConfig = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
     }
 
@@ -42,6 +41,8 @@ class one extends PluginBase implements Listener
         $name = $player->getName();
         $level = $player->getLevel();
         $block = $player->getLevel()->getBlock($player->subtract(0, 1, 0));
+        $this->myConfig = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+
 
         // contains items and armors
         $fhotbarItem = Item::get(276, 0, 1); // usually swords
@@ -84,8 +85,8 @@ class one extends PluginBase implements Listener
         }
 
         if ($block->getId() === 0) return;
-        if ($level->getName() === $this->getConfig()->get('world')) {
-            if ($block->getId() === $this->getConfig()->get('block-id')) {
+        if ($level->getName() === $this->myConfig->get('world')) {
+            if ($block->getId() === $this->myConfig->get('block-id')) {
                 if (empty($this->cooldown[$player->getName()])) {
                     $this->cooldown[$player->getName()] = time() + 20; // 20 is a second of cooldown
                     //$this->getServer()->dispatchCommand(new ConsoleCommandSender(), "rca " . $name . " " ."kit kit");
