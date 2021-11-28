@@ -46,7 +46,7 @@ class one extends PluginBase implements Listener
 
         // contains items and armors
         $fhotbarItem = Item::get(276, 0, 1); // usually swords
-        $items = [Item::get(346, 0, 1), Item::get(364, 0, 32), Item::get(368, 0, 16), Item::get(322, 0, 32), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1), Item::get(438, 6, 1)]; // the rest of items
+        $items = [$fhotbarItem, Item::get(346, 0, 1), Item::get(364, 0, 32), Item::get(368, 0, 16), Item::get(322, 0, 32), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1), Item::get(438, 21, 1)]; // the rest of items
         $setHelmet = Item::get(310, 0, 1);
         $setChestplate = Item::get(311, 0, 1);
         $setLeggings = Item::get(312, 0, 1);
@@ -90,8 +90,9 @@ class one extends PluginBase implements Listener
                 if (empty($this->cooldown[$player->getName()])) {
                     $this->cooldown[$player->getName()] = time() + 20; // 20 is a second of cooldown
                     //$this->getServer()->dispatchCommand(new ConsoleCommandSender(), "rca " . $name . " " ."kit kit");
-                    foreach ($items as $item){
-                        $inv->addItem($fhotbarItem, $item); // returns all items to player
+                    $inv->clearAll();
+                    foreach ($items as $item) {
+                        $inv->addItem($item); // returns all items to player
                     }
                     $armor->setHelmet($setHelmet);
                     $armor->setChestplate($setChestplate);
