@@ -90,7 +90,9 @@ class one extends PluginBase implements Listener
                 if (empty($this->cooldown[$player->getName()])) {
                     $this->cooldown[$player->getName()] = time() + 20; // 20 is a second of cooldown
                     //$this->getServer()->dispatchCommand(new ConsoleCommandSender(), "rca " . $name . " " ."kit kit");
-                    $inv->addItem($fhotbarItem, $items); // returns all items to player
+                    foreach ($items as $item){
+                        $inv->addItem($fhotbarItem, $item); // returns all items to player
+                    }
                     $armor->setHelmet($setHelmet);
                     $armor->setChestplate($setChestplate);
                     $armor->setLeggings($setLeggings);
