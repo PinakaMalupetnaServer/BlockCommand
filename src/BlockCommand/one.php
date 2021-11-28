@@ -33,7 +33,7 @@ class one extends PluginBase implements Listener
     }
 
 
-    public function onMove(PlayerMoveEvent $event): void
+    public function onRun(PlayerMoveEvent $event): void
     {
         $player = $event->getPlayer();
         $inv = $player->getInventory();
