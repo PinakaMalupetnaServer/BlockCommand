@@ -3,4 +3,4 @@ main: BlockCommand\one
 version: 3.0.0
 api: 4.0.0
 author: Lycol50
-description: Step on a speicifc Block to execute Commands.
+description: A In-house Plugin from PMnS, created by myself. Inspired from PMMP forums, that player will give PotPVP Items when stepped on a specific block, and specific world based on the config.yml
