@@ -1,6 +1,6 @@
 name: BlockCommand
 main: BlockCommand\one
-version: 2.2
-api: 3.0.0
-author: princepines
+version: 3.0.0
+api: 4.0.0
+author: Lycol50
 description: Step on a speicifc Block to execute Commands.
