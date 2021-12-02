@@ -37,7 +37,7 @@ class one extends PluginBase implements Listener
         //$level = $player->getLevel();
         $level = $player->getWorld();
         //$block = $player->getLevel()->getBlock($player->subtract(0, 1, 0));
-        $block = $player->getWorld()->getBlock($player->subtract(0, 1, 0));
+        $block = $player->getWorld()->getBlock($player->getPosition()->down());
         $this->myConfig = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
 
