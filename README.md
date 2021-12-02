@@ -21,7 +21,7 @@ block-id: 57 # diamond block
     - Steak x32
     - Ender Pearl x16
     - Golden Apple x32
-    - The rest is Splash potion of Instant Health
+    - The rest is Splash potion of Regeneration
 
 ## Disclaimer
 > Original Plugin BlockCommand can be found at [Lycol50's repository](https://github.com/Lycol50/BlockCommander)

@@ -13,6 +13,7 @@ use pocketmine\item\VanillaItems;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as C;
+use function pocketmine\inventory\transaction\getItem;
 
 class one extends PluginBase implements Listener
 {
@@ -37,13 +38,13 @@ class one extends PluginBase implements Listener
         //$level = $player->getLevel();
         $level = $player->getWorld();
         //$block = $player->getLevel()->getBlock($player->subtract(0, 1, 0));
-        $block = $player->getWorld()->getBlock($player->subtract(0, 1, 0));
-        $this->myConfig = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+        $block = $player->getWorld()->getBlock($player->getPosition()->down());
+        $fileConfig = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
 
         // contains items and armors
         $fhotbarItem = VanillaItems::DIAMOND_SWORD(); //Item::get(276, 0, 1); // usually swords
-        $items = [$fhotbarItem, ItemFactory::get(364, 0, 32), ItemFactory::get(368, 0, 16), ItemFactory::get(322, 0, 32), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1), ItemFactory::get(438, 21, 1)]; // the rest of items
+        $items = [$fhotbarItem, VanillaItems::STEAK()->setCount(32), VanillaItems::ENDER_PEARL()->setCount(16), VanillaItems::GOLDEN_APPLE()->setCount(32), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1), VanillaItems::REGENERATION_SPLASH_POTION()->setCount(1)]; // the rest of items
         $setHelmet = VanillaItems::DIAMOND_HELMET(); //Item::get(310, 0, 1);
         $setChestplate = VanillaItems::DIAMOND_CHESTPLATE(); //Item::get(311, 0, 1);
         $setLeggings = VanillaItems::DIAMOND_LEGGINGS(); //Item::get(312, 0, 1);
@@ -82,8 +83,8 @@ class one extends PluginBase implements Listener
         }
 
         if ($block->getId() === 0) return;
-        if ($level->getFolderName() === $this->myConfig->get('world')) {
-            if ($block->getId() === $this->myConfig->get('block-id')) {
+        if ($level->getFolderName() === $fileConfig->get('world')) {
+            if ($block->getId() === $fileConfig->get('block-id')) {
                 if (empty($this->cooldown[$player->getName()])) {
                     $this->cooldown[$player->getName()] = time() + 20; // 20 is a second of cooldown
                     //$this->getServer()->dispatchCommand(new ConsoleCommandSender(), "rca " . $name . " " ."kit kit");
