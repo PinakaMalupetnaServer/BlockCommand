@@ -13,7 +13,6 @@ use pocketmine\item\VanillaItems;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as C;
-use function pocketmine\inventory\transaction\getItem;
 
 class one extends PluginBase implements Listener
 {
