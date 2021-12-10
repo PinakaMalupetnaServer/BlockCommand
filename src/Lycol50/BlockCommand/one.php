@@ -1,6 +1,6 @@
 <?php
 
-namespace BlockCommand;
+namespace Lycol50\BlockCommand;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerMoveEvent;
