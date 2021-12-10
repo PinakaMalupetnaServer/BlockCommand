@@ -1,6 +1,6 @@
-name: BlockCommand
-main: BlockCommand\one
-version: 2.2
-api: 3.0.0
-author: princepines
-description: Step on a speicifc Block to execute Commands.
+name: BlockPotPVP
+main: Lycol50\BlockCommand\one
+version: 2.5
+api: 4.0.0
+author: Lycol50
+description: Step on a speicifc block to give PotPVP Items.
