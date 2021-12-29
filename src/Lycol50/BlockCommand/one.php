@@ -103,9 +103,5 @@ class one extends PluginBase implements Listener
                 }
             }
         }
-    }
-
-    protected function onDisable() : void {
-        $this->getServer()->getLogger()->notice("Created by princepines, contributed by many.");
-    }
+    } 
 }
